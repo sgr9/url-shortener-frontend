@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  // Proxied through Vite to target http://localhost:8080/api during development to avoid CORS
-  baseURL: '/api'
+  // Uses the environment variable if defined, otherwise falls back to the Vite proxy for local dev
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api'
 });
 
 api.interceptors.request.use((config) => {
